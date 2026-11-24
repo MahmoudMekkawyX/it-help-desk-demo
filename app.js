@@ -80,12 +80,13 @@
       <label class="f">Username<input class="input" name="u" autocomplete="username" autofocus required></label>
       <label class="f">Password<input class="input" type="password" name="p" autocomplete="current-password" required></label>
       <div class="errmsg" id="lerr" role="alert"></div><button class="btn primary" style="justify-content:center">Sign in</button>
-      ${demo ? `<div class="hint"><b>Demo accounts</b><br>Admin: <code>admin</code> / <code>admin123</code><br>Agent: <code>sara</code> / <code>agent123</code></div>` : ''}</form></section></div>`;
+      ${demo ? `<div class="hint"><b>Public demo: use these accounts</b><br>This demo has fictional data only. Real team accounts are not here.<br>Admin: <code>admin</code> / <code>admin123</code> <button type="button" class="btn sm" data-fill="admin|admin123">Fill</button><br>Agent: <code>sara</code> / <code>agent123</code> <button type="button" class="btn sm" data-fill="sara|agent123">Fill</button></div>` : ''}</form></section></div>`;
+    document.querySelectorAll('[data-fill]').forEach(b => b.addEventListener('click', () => { const [u, p] = b.dataset.fill.split('|'); const f = $('#lf'); f.u.value = u; f.p.value = p; f.p.focus(); }));
     $('#lf').addEventListener('submit', async e => {
       e.preventDefault(); const f = e.target, err = $('#lerr'); err.textContent = '';
       if (!f.u.value.trim() || !f.p.value) { err.textContent = 'Enter your username and password.'; return; }
       try { state.user = await Store.login(f.u.value, f.p.value); await load(); location.hash = state.user.mustChange ? '#/account' : '#/dashboard'; render(); }
-      catch (x) { err.textContent = x.message; }
+      catch (x) { err.textContent = x.message + (demo ? ' This is the public demo: use admin / admin123 or sara / agent123.' : ''); }
     });
   }
 
