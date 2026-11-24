@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HelpDesk Hub</title>
+<meta name="description" content="IT help desk: tickets, troubleshooting knowledge base and asset log.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%234f46e5'/%3E%3Cpath d='M9 17l5 5 9-11' stroke='white' stroke-width='3' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="app.css">
+<script>try{var t=localStorage.getItem('hdTheme');if(t)document.documentElement.dataset.theme=t;else if(matchMedia('(prefers-color-scheme: dark)').matches)document.documentElement.dataset.theme='dark'}catch(e){}</script>
+</head>
+<body>
+<div id="app"><div class="boot">Loading…</div></div>
+<dialog id="modal"></dialog>
+<div id="toasts" aria-live="polite"></div>
+<script src="store.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
